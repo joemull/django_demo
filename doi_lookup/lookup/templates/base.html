@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% block title %}<title>DOI Lookup</title>{% endblock %}
+
+    <!-- Static files -->
+    {% load static %}
+    <link href="{% static 'css/html5reset.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+  </head>
+  <body>
+
+    <h1>DOI Lookup Demo App</h1>
+
+    {% block navbar %}
+      <nav>
+        <ul>
+          <li><a href="{% url 'index' %}">New Article Lookup</a></li>
+          <li><a href="{% url 'articles' %}">All Articles</a></li>
+        </ul>
+      </nav>
+    {% endblock %}
+
+    <div class="container">
+
+    {% block content %}
+
+    {% endblock %}
+
+    </div>
+
+  </body>
+</html>

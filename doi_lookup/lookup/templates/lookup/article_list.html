@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h2>All Articles</h2>
+
+  <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+
+  {% if article_list %}
+  <ul>
+
+    {% for article in article_list %}
+
+      <li>
+        <div class="title"><p>{{ article.title }}</p></div>
+
+        <button type="button" name="delete"><a href="{% url 'author-delete' article.pk %}">Delete</a></button>
+
+        <div class="author">
+
+          <p>
+
+            {% if article.given_name != none %}
+              {{ article.given_name }}
+            {% endif %}
+
+            {{ article.family_name }}
+
+            {% if article.email != none %}
+              (<a href="mailto:{{ article.email }}">{{ article.email }}</a>)
+            {% endif %}
+
+          </p>
+
+        </div>
+
+        <div class="license">
+          {% if article.license != none %}
+            <p>License: <a href="{{ article.license }}">{{ article.license }}</a></p>
+          {% endif %}
+        </div>
+
+        <div class="abstract">
+          {% if article.abstract != none %}
+            {{ article.abstract }}
+          {% endif %}
+        </div>
+
+      </li>
+
+    {% endfor %}
+
+  </ul>
+
+  {% else %}
+
+  <p>No articles added yet. <a href="{% url 'index' %}">Look one up!</a></p>
+
+  {% endif %}
+
+  <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div>
+
+{% endblock %}
