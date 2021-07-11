@@ -40,11 +40,10 @@ def index(request):
 
     return render(request, 'index.html', context = context)
 
-
 class ArticleListView(generic.ListView):
     model = Article
     paginate_by = 10
-    
+
 class ArticleDelete(generic.edit.DeleteView):
     model = Article
     success_url = reverse_lazy('articles')

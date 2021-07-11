@@ -1,7 +1,7 @@
 import requests
 import json
 
-from .models import Article
+from .models import Article, Contributor
 
 with open('secrets.json') as secrets_file:
     MAILTO = json.loads(secrets_file.read())["MAILTO"]
@@ -29,10 +29,28 @@ def parse_crossref_json(data):
             article.license = message['license'][0]['URL']
         if 'abstract' in message:
             article.abstract = message['abstract']
-        article.family_name = message['author'][0]['family']
-        if 'given' in message['author'][0]:
-            article.given_name = message['author'][0]['given']
         article.save()
+
+        for author in message['author']:
+
+            if 'ORCID' in author:
+                orcid = author['ORCID'].lstrip('htps:/orcid.g')
+                if Contributor.objects.filter(orcid__exact=orcid).exists():
+                    article.contributors.add(Contributor.objects.get(orcid=orcid))
+                    continue
+
+            # if 'email' etc.
+            # continue
+
+            contributor = Contributor()
+            contributor.family_name = author['family']
+            if 'given' in author:
+                contributor.given_name = author['given']
+            # ADD EMAIL
+            if 'ORCID' in author:
+                contributor.orcid = author['ORCID'].lstrip('htps:/orcid.g')
+            contributor.save()
+            article.contributors.add(contributor)
 
         return article
 
