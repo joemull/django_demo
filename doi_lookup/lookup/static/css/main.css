@@ -6,6 +6,8 @@ body {
   line-height: normal;
 }
 
+
+/* Headers */
 h1, h2 {
   text-align: center;
 }
@@ -18,17 +20,30 @@ h2 {
   padding: 10px;
 }
 
+/* Navigation */
 nav {
   background-color: lightgray;
   padding: 20px;
   text-align: center;
 }
 
-nav li {
-  display: inline-block;
+nav a, .lookup input {
+  text-decoration: none;
   padding: 20px;
+  border: none;
 }
 
+nav a:hover, .lookup input:hover {
+  background-color: #705E78;
+  color: white;
+}
+
+nav li {
+  display: inline-block;
+}
+
+
+/* Container padding */
 .container {
   margin: auto;
   width: 90%;
@@ -40,12 +55,69 @@ nav li {
   padding-bottom: 8px;
 }
 
-.title {
-  font-weight: bold;
+
+/* Lookup page */
+a {
+  color: black;
 }
 
-li {
+li label {
+  display: none;
+}
+
+#id_doi, #id_doi:hover {
+  width: 100%;
+  line-height: 24px;
+  text-decoration: none;
+  padding: 0px;
+  border: solid 1px black;
+  background: none;
+}
+
+.helptext {
+  line-height: 24px;
+}
+
+/* List page */
+.title {
+ font-weight: bold;
+ display: inline-block;
+ max-width: 80%
+}
+
+
+li, .confirm-delete input {
   list-style: none;
   padding-bottom: 15px;
   padding-top: 15px;
+}
+
+li button {
+  float: right;
+}
+
+.author a:hover {
+  margin-left: 3px;
+}
+
+li button, .confirm-delete input {
+  background-color: #A5AAA3;
+  border: none;
+}
+
+.confirm-delete input {
+  border: none;
+  background-color: #A5AAA3;
+  margin: 30px;
+}
+
+button:hover, .confirm-delete input:hover {
+  background-color: #FEA443;
+}
+
+button a, .confirm-delete input {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  line-height: 40px;
 }

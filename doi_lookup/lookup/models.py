@@ -30,6 +30,9 @@ class Article(models.Model):
         blank = True,
     )
 
+    # Metadata
+    ordering = ['title']
+
     contributors = models.ManyToManyField(
         'Contributor',
         through='Contribution',
@@ -38,14 +41,11 @@ class Article(models.Model):
         blank = True,
     )
 
-    # Metadata
-    ordering = ['title']
-
     # Methods
     def __str__(self):
         return self.title
 
-    # Delete contributor when authored article is deleted if they don't have any other articles in the database 
+    # Delete contributor when authored article is deleted if they don't have any other articles in the database
     @receiver(post_delete, sender = 'lookup.Contribution')
     def remove_orphaned_contributor(**kwargs):
         contributor = kwargs['instance'].contributor
@@ -92,5 +92,7 @@ class Contributor(models.Model):
             return self.family_name
 
 class Contribution(models.Model):
+
+    # Fields
     article = models.ForeignKey('Article', on_delete=models.CASCADE)
     contributor = models.ForeignKey('Contributor', on_delete=models.CASCADE)

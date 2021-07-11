@@ -2,7 +2,12 @@
 
 {% block content %}
 
-  <h2>All Articles</h2>
+  {% if query_contributor %}
+    <h2>Articles by {{ query_contributor }}</h2>
+  {% else %}
+    <h2>All Articles</h2>
+
+  {% endif %}
 
   {% if article_list %}
   <ul>
@@ -12,25 +17,28 @@
       <li>
         <div class="title"><p>{{ article.title }}</p></div>
 
-        <button type="button" name="delete"><a href="{% url 'author-delete' article.pk %}">Delete</a></button>
+        <button type="button" name="delete"><a href="{% url 'author-delete' article.pk %}">Remove</a></button>
 
-        <!-- <div class="author">
+        <div class="author">
 
-          <p>
+          {% for contributor in article.contributors.all %}
 
-            {% if article.given_name != none %}
-              {{ article.given_name }}
-            {% endif %}
+            <p>
 
-            {{ article.family_name }}
+              <a href="{% url 'author-articles' contributor.given_name contributor.family_name %}">
+                {{ contributor.given_name }}
+                {{ contributor.family_name }}
+              </a>
 
-            {% if article.email != none %}
-              (<a href="mailto:{{ article.email }}">{{ article.email }}</a>)
-            {% endif %}
+              {% if contributor.email != none %}
+                (<a href="mailto:{{ article.email }}">{{ article.email }}</a>)
+              {% endif %}
 
-          </p>
+            </p>
 
-        </div> -->
+          {% endfor %}
+
+        </div>
 
         <div class="license">
           {% if article.license != none %}

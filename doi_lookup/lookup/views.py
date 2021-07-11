@@ -1,8 +1,8 @@
 from django.views import generic
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 
-from .models import Article
+from .models import Article, Contributor
 from .forms import LookUpDOIForm
 from .harvest import get_from_crossref
 
@@ -43,6 +43,20 @@ def index(request):
 class ArticleListView(generic.ListView):
     model = Article
     paginate_by = 10
+
+class AuthorFilteredArticleListView(ArticleListView):
+    def get_queryset(self):
+        qs = Article.objects.filter(
+            contributors__given_name = self.kwargs['given_name'],
+            contributors__family_name = self.kwargs['family_name'],
+        )
+        return qs
+
+    # https://stackoverflow.com/questions/29598341/extra-context-in-django-generic-listview
+    def get_context_data(self,**kwargs):
+        context = super(ArticleListView, self).get_context_data(**kwargs)
+        context['query_contributor'] = f"{self.kwargs['given_name']} {self.kwargs['family_name']}"
+        return context
 
 class ArticleDelete(generic.edit.DeleteView):
     model = Article
