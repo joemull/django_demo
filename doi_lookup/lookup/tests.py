@@ -1,8 +1,8 @@
 from django.test import TestCase
-import json
-from .views import *
 
-# Create your tests here.
+import json
+from .harvest import *
+from .views import *
 
 class TestCrossref(TestCase):
 

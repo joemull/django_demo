@@ -12,6 +12,8 @@
       <li>
         <div class="title"><p>{{ article.title }}</p></div>
 
+        <button type="button" name="delete"><a href="{% url 'author-delete' article.pk %}">Delete</a></button>
+
         <div class="author">
 
           <p>

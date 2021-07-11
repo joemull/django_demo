@@ -1,7 +1,6 @@
 from django.views import generic
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.shortcuts import render
+from django.urls import reverse, reverse_lazy
 
 from .models import Article
 from .forms import LookUpDOIForm
@@ -25,7 +24,7 @@ def index(request):
 
             try:
                 context['article'] = Article.objects.get(doi=clean_doi)
-                context['message'] = 'Article already looked up'
+                context['message'] = 'Article already saved to the list'
 
             except:
                 article = get_from_crossref(clean_doi)
@@ -33,7 +32,7 @@ def index(request):
                     context['article'] = article
                     context['message'] = 'Article added'
                 else:
-                    context['message'] = 'Oops, something went wrong'
+                    context['message'] = 'Article not found'
 
         else:
             context['message'] = 'Oops, something went wrong'
@@ -44,3 +43,7 @@ def index(request):
 
 class ArticleListView(generic.ListView):
     model = Article
+
+class ArticleDelete(generic.edit.DeleteView):
+    model = Article
+    success_url = reverse_lazy('articles')
