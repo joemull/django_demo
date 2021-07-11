@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h2>All Articles</h2>
+
+  {% if article_list %}
+  <ul>
+
+    {% for article in article_list %}
+
+      <li>
+        <div class="title">{{ article.title }}</div>
+
+        <div class="author">
+
+          <p>Primary Author:
+
+            {% if article.given_name != '' %}
+              {{ article.given_name }}
+            {% endif %}
+
+            {{ article.family_name }}
+
+            {% if article.email != none %}
+              (<a href="mailto:{{ article.email }}">{{ article.email }}</a>)
+            {% endif %}
+
+          </p>
+
+        </div>
+
+        <div class="license">
+          {% if article.license != none %}
+            <p>License: <a href="{{ article.license }}">{{ article.license }}</a></p>
+          {% endif %}
+        </div>
+
+        <div class="abstract">
+          {% if article.abstract != '' %}
+            {{ article.abstract }}
+          {% endif %}
+        </div>
+
+      </li>
+
+    {% endfor %}
+
+  </ul>
+
+  {% else %}
+
+  <p>No articles added yet. <a href="{% url 'index' %}">Look one up!</a></p>
+
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,51 @@
+body {
+  margin: auto;
+  box-sizing: border-box;
+  font-family: 'Lora', serif;
+  background-color: #F9F9F9;
+  line-height: normal;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h1 {
+  padding: 20px;
+}
+
+h2 {
+  padding: 10px;
+}
+
+nav {
+  background-color: lightgray;
+  padding: 20px;
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+  padding: 20px;
+}
+
+.container {
+  margin: auto;
+  width: 90%;
+  max-width: 800px;
+  padding: 20px 0 20px 0;
+}
+
+.container div {
+  padding-bottom: 8px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+li {
+  list-style: none;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
