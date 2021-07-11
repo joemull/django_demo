@@ -1,6 +1,8 @@
 import requests
 import json
 
+from .models import Article
+
 with open('secrets.json') as secrets_file:
     MAILTO = json.loads(secrets_file.read())["MAILTO"]
 
@@ -31,6 +33,7 @@ def parse_crossref_json(data):
         if 'given' in message['author'][0]:
             article.given_name = message['author'][0]['given']
         article.save()
+
         return article
 
     except:
