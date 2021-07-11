@@ -34,8 +34,7 @@ nav a, .lookup input {
 }
 
 nav a:hover, .lookup input:hover {
-  background-color: #705E78;
-  color: white;
+  background-color: #aa93b5;
 }
 
 nav li {
@@ -55,7 +54,6 @@ nav li {
   padding-bottom: 8px;
 }
 
-
 /* Lookup page */
 a {
   color: black;
@@ -66,10 +64,13 @@ li label {
 }
 
 #id_doi, #id_doi:hover {
+  font-family: 'Lora', serif;
   width: 100%;
   line-height: 24px;
   text-decoration: none;
-  padding: 0px;
+  color: black;
+  padding: 5px;
+  margin-bottom: 10px;
   border: solid 1px black;
   background: none;
 }
@@ -102,6 +103,7 @@ li button {
 
 li button, .confirm-delete input {
   background-color: #A5AAA3;
+  font-family: 'Lora', serif;
   border: none;
 }
 

@@ -24,11 +24,7 @@ class Article(models.Model):
         blank = True,
     )
 
-    license = models.URLField(
-        help_text = 'The full web address for a license page such as a https://creativecommons.org/licenses/by/4.0/',
-        null = True,
-        blank = True,
-    )
+    license = models.ForeignKey('License', on_delete = models.SET_NULL, null = True, blank = True)
 
     # Metadata
     ordering = ['title']
@@ -96,3 +92,10 @@ class Contribution(models.Model):
     # Fields
     article = models.ForeignKey('Article', on_delete=models.CASCADE)
     contributor = models.ForeignKey('Contributor', on_delete=models.CASCADE)
+
+class License(models.Model):
+    url = models.URLField(
+        help_text = 'The full web address for a license page such as a https://creativecommons.org/licenses/by/4.0/',
+        null = True,
+        blank = True,
+    )

@@ -42,7 +42,7 @@
 
         <div class="license">
           {% if article.license != none %}
-            <p>License: <a href="{{ article.license }}">{{ article.license }}</a></p>
+            <p>License: <a href="{{ article.license.url }}">{{ article.license.url }}</a></p>
           {% endif %}
         </div>
 
