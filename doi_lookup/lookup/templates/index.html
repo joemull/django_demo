@@ -3,5 +3,25 @@
 {% block content %}
   <h2>DOI Lookup</h2>
   <p>Look up a journal article using its DOI (Digital Object Identifier).</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit">
+
+  </form>
+
+  {% if message %}
+    <div class="message">
+      <p>{{ message }}</p>
+    </div>
+  {% endif %}
+
+  {% if article %}
+    <div class="title">
+      <p>{{ article.title }}</p>
+    </div>
+  {% endif %}
 
 {% endblock %}

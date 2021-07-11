@@ -10,13 +10,13 @@
     {% for article in article_list %}
 
       <li>
-        <div class="title">{{ article.title }}</div>
+        <div class="title"><p>{{ article.title }}</p></div>
 
         <div class="author">
 
-          <p>Primary Author:
+          <p>
 
-            {% if article.given_name != '' %}
+            {% if article.given_name != none %}
               {{ article.given_name }}
             {% endif %}
 
@@ -37,7 +37,7 @@
         </div>
 
         <div class="abstract">
-          {% if article.abstract != '' %}
+          {% if article.abstract != none %}
             {{ article.abstract }}
           {% endif %}
         </div>

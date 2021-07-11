@@ -4,9 +4,15 @@ class Article(models.Model):
     """A journal article model"""
 
     # Fields
+    doi = models.CharField(
+        help_text = 'The Digital Object Identifier (e.g. 10.3998/ergo.12405314.0002.002)',
+        max_length = 255,
+        verbose_name = 'DOI',
+    )
+
     title = models.CharField(
         help_text = 'The full title of the article including its subtitle',
-        max_length = 250,
+        max_length = 255,
     )
 
     abstract = models.TextField(
@@ -37,7 +43,7 @@ class Article(models.Model):
 
     email = models.EmailField(
         null = True,
-        blank = True,        
+        blank = True,
     )
 
     # Metadata
