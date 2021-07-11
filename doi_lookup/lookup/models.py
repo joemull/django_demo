@@ -26,9 +26,6 @@ class Article(models.Model):
 
     license = models.ForeignKey('License', on_delete = models.SET_NULL, null = True, blank = True)
 
-    # Metadata
-    ordering = ['title']
-
     contributors = models.ManyToManyField(
         'Contributor',
         through='Contribution',
@@ -36,6 +33,9 @@ class Article(models.Model):
         help_text = 'A contributor to the article',
         blank = True,
     )
+
+    # Metadata
+    ordering = ['title']
 
     # Methods
     def __str__(self):
