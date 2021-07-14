@@ -1,10 +1,38 @@
 from django.test import TestCase
+from diskcache import Cache
 
 import json
 from .harvest import *
 from .views import *
 
 class TestCrossref(TestCase):
+
+    # Does it reject bad DOIs?
+    def test_get_from_crossref(self):
+        with Cache("testing_cache") as cache:
+            doi = [""]
+
+    # Does it accept good DOIs in lots of forms including ones with whitespace?
+
+    # Does it catch duplicate articles and avoid multiple records?
+
+    # Can it handle a sparse record?
+
+    # Does it catch duplicate contributors and avoid multiple records?
+
+    # Does it handle multiple formats of ORCID including ones with whitespace?
+
+    # Does it ignore bad ORCIDs?
+
+    # Does it properly link to contributors already in the database?
+
+    # Does it catch duplicate licenses and avoid multiple records?
+
+    # Does it properly link to existing license records?
+
+    # Can it handle whitespace in License URL fields?
+
+    # Can it handle DOIs from a wide range of publishers?
 
     def test_parse_crossref(self):
         data1 = json.loads('''
