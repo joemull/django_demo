@@ -1,3 +1,5 @@
+import string
+
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -11,5 +13,5 @@ class LookUpDOIForm(forms.Form):
     )
 
     def clean_doi(self):
-        data = self.cleaned_data['doi'].lstrip('htps:/doinf.orgx')
+        data = self.cleaned_data['doi'].strip(string.whitespace).lstrip('htps:/doinf.orgx')
         return data

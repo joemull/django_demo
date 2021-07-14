@@ -1,5 +1,7 @@
 import requests
 import json
+import string
+import re
 
 from .models import Article, Contributor, License
 
@@ -41,19 +43,21 @@ def parse_crossref_json(data):
     for author in message['author']:
 
         if 'ORCID' in author:
-            orcid = author['ORCID'].lstrip('htps:/orcid.g')
+            orcid_url = author['ORCID']
+            m = re.search('([0-9]{4,4}\-){3,3}[0-9]{4,4}',orcid_url)
+            orcid = m.group()
+            print(orcid)
             if Contributor.objects.filter(orcid__exact=orcid).exists():
                 article.contributors.add(Contributor.objects.get(orcid=orcid))
                 continue
 
-        # if 'email' etc.
-        # continue
+        # if 'email' check for existing contributor and link if found
 
         contributor = Contributor()
         contributor.family_name = author['family']
         if 'given' in author:
             contributor.given_name = author['given']
-        # ADD EMAIL
+        # ADD EMAIL for new contributor records
         if 'ORCID' in author:
             contributor.orcid = author['ORCID'].lstrip('htps:/orcid.g')
         contributor.save()

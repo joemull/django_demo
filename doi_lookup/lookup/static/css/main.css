@@ -83,7 +83,7 @@ li label {
 .title {
  font-weight: bold;
  display: inline-block;
- max-width: 80%
+ max-width: 80%;
 }
 
 
@@ -97,8 +97,25 @@ li button {
   float: right;
 }
 
-.author a:hover {
+.author {
+  max-width: 80%;
+}
+
+.author p {
+  display: inline-block;
+  margin-right: 18px;
+  text-decoration: none;
+}
+
+.author a{
+  text-decoration: none;
+
+}
+
+.author p:hover {
   margin-left: 3px;
+  margin-right: 15px;
+  text-decoration: underline;
 }
 
 li button, .confirm-delete input {

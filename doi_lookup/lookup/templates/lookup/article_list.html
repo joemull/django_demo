@@ -40,6 +40,10 @@
 
         </div>
 
+        <div class="doi">
+          <p>DOI: <a href="https://doi.org/{{ article.doi }}">{{ article.doi }}</a></p>
+        </div>
+
         <div class="license">
           {% if article.license != none %}
             <p>License: <a href="{{ article.license.url }}">{{ article.license.url }}</a></p>
