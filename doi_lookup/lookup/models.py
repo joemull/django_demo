@@ -24,7 +24,12 @@ class Article(models.Model):
         blank = True,
     )
 
-    license = models.ForeignKey('License', on_delete = models.SET_NULL, null = True, blank = True)
+    license = models.ForeignKey(
+        'License',
+        on_delete = models.SET_NULL,
+        null = True,
+        blank = True
+    )
 
     contributors = models.ManyToManyField(
         'Contributor',
@@ -35,7 +40,8 @@ class Article(models.Model):
     )
 
     # Metadata
-    ordering = ['title']
+    class Meta:
+        ordering = ['title']
 
     # Methods
     def __str__(self):
@@ -76,9 +82,6 @@ class Contributor(models.Model):
         blank = True,
         verbose_name = 'ORCID',
     )
-
-    # Metadata
-    ordering = ['family_name','given_name']
 
     # Methods
     def __str__(self):
