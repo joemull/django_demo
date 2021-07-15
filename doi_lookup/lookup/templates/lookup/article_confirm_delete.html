@@ -2,13 +2,17 @@
 
 {% block content %}
 
-<h2>Delete Article</h2>
+<div class="confirm-delete">
 
-<p>Are you sure you want to delete &#8220;{{ article }}&#8221;?</p>
+<h2>Remove Article</h2>
+
+<p>Are you sure you want to remove &#8220;{{ article }}&#8221; from the articles list?</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Yes, delete.">
+  <input type="submit" value="Yes, remove it">
 </form>
+
+</div>
 
 {% endblock %}
