@@ -30,4 +30,6 @@ Note that some of the tests get live data from the API and use a sleep timer, so
 To run the tests, navigate to the same directory as `manage.py` and use `python manage.py test`.
 
 # Viewing the admin interface
-A basic admin view is available at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+A basic admin view is available at [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin).
+
+You'll have to create a superuser account with `python manage.py createsuperuser`.
