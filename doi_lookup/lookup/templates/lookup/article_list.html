@@ -25,10 +25,18 @@
 
             <p>
 
-              <a href="{% url 'author-articles' contributor.given_name contributor.family_name %}">
-                {{ contributor.given_name }}
+              {% if contributor.given_name != none %}
+                <a href="{% url 'author-articles' contributor.given_name contributor.family_name %}">
+                  {{ contributor.given_name }}
+                  {{ contributor.family_name }}
+                </a>
+
+              {% elif contributor.given_name == none %}
+              <a href="{% url 'author-articles-family-name-only' contributor.family_name %}">
                 {{ contributor.family_name }}
               </a>
+
+              {% endif %}
 
               {% if contributor.email != none %}
                 (<a href="mailto:{{ article.email }}">{{ article.email }}</a>)

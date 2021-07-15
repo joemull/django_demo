@@ -25,7 +25,6 @@ BAD_DOIS = [
     '""""""\\\\\\"""""',
 ]
 
-
 class TestLookupInput(TestCase):
 
     # Can it handle DOIs from a wide range of publishers?
@@ -33,15 +32,13 @@ class TestLookupInput(TestCase):
     def test_doi_validation(self):
         for doi in DIFFERENTLY_FORMATTED_DOIS:
             form = LookUpDOIForm(data = {'doi' : doi})
-            if not form.is_valid():
-                self.assertFail()
+            self.assertTrue(form.is_valid())
 
     # Does it reject bad DOIs?
     def test_reject_bad_dois(self):
         for doi in BAD_DOIS:
             form = LookUpDOIForm(data = {'doi' : doi})
-            if form.is_valid():
-                self.assertFail()
+            self.assertFalse(form.is_valid())
 
     # Does it clean DOIs?
     def test_clean_doi(self):
@@ -49,5 +46,4 @@ class TestLookupInput(TestCase):
             form = LookUpDOIForm(data = {'doi' : doi})
             if form.is_valid():
                 for each in ['https','doi','\n','//']:
-                    if each in form.cleaned_data['doi']:
-                        self.assertFail()
+                    self.assertNotIn(each,form.cleaned_data['doi'])
