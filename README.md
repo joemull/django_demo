@@ -7,7 +7,7 @@ This app lets you look up articles by their DOIs and save them to a list. When y
 2. Contributor (given name, family name, ORCID)
 3. License (url)
 
-For each contributor, if there's an ORCID available, the app checks if that Contributor already exists in the database in order to avoid creating duplicate contributor records. It does the same with License URLs. Both DOIs and ORCIDs are validated and shortened to their basic forms before being input into the database.
+For each contributor, if there's an ORCID available, the app checks whether someone with that ORCID already exists in the database in order to avoid creating duplicate contributor records. It does the same with License URLs. Both DOIs and ORCIDs are validated and shortened to their basic forms before being input into the database.
 
 You can view a list of all articles saved, sorted by title, and you can page through the list if more than ten articles are saved. You can also click on author names in order to view a list of articles by that author. This also works for articles whose authors are only listed by last name (e.g. 10.2979/jmodelite.38.2.191).
 
