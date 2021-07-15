@@ -25,6 +25,8 @@ I drew on MDN's [Local Library Django Tutorial](https://developer.mozilla.org/en
 # Testing
 There are selective unit tests, with better coverage for things more likely to break, such as the functions that call the Crossref API.
 
+Note that some of the tests get live data from the API and use a sleep timer, so the first time the tests run it will take about 15-20 seconds. After the first test run this info is cached for 12 hours.
+
 To run the tests, navigate to the same directory as `manage.py` and use `python manage.py test`.
 
 # Viewing the admin interface
