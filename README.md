@@ -20,7 +20,8 @@ I drew on MDN's [Local Library Django Tutorial](https://developer.mozilla.org/en
 2. Clone the repository or download the files.
 3. Install the app's dependencies (`django` 3.1, `requests`, and `diskcache` for testing) using [`pip`](https://pip.pypa.io/en/stable/). Best to create and activate a virtual environment with something like [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/) and run `pip install -r requirements.txt` to install them all at once.
 4. In `doi_lookup`, rename `sample_secrets.json` as `secrets.json` and enter a development key of your choosing for `SECRET_KEY` and your email address for `MAILTO` as a courtesy to Crossref.
-5. Navigate to the same directory as `python manage.py`, run the app with `python manage.py runserver`, and navigate to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view in your browser.
+5. Navigate to the same directory as `python manage.py` and set up the database by running `python manage.py makemigrations` and then `python manage.py migrate`.
+6. Run the app with `python manage.py runserver`, and navigate to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view in your browser.
 
 # Testing
 There are selective unit tests, with better coverage for things more likely to break, such as the functions that call the Crossref API.
