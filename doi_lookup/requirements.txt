@@ -2,7 +2,7 @@ asgiref==3.2.10
 certifi==2021.5.30
 charset-normalizer==2.0.2
 diskcache==5.2.1
-Django==3.1.12
+Django==3.1.13
 idna==3.2
 pytz==2021.1
 requests==2.26.0
